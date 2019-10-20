@@ -1,0 +1,290 @@
+<section class="wrapper main-wrapper row">
+  
+    <div class='col-xs-12'>
+        <div class="page-title">
+
+            <div class="pull-left">
+                <!-- PAGE HEADING TAG - START -->
+                <h1 class="title">Add a Patient</h1><!-- PAGE HEADING TAG - END -->
+            </div>
+
+            <div class="pull-right hidden-xs">
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="index.html"><i class="fa fa-home"></i>Home</a>
+                    </li>
+                    <li>
+                        <a href="uni-staffs.html">Patient</a>
+                    </li>
+                    <li class="active">
+                        <strong>Add Patient</strong>
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!-- MAIN CONTENT AREA STARTS -->
+    <div class="col-xs-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">Basic Info</h2>
+            
+            </header>
+            <div class="content-body">
+
+                <form [formGroup]="patientForm" (ngSubmit)="PatientCreate()">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">First Name</label>
+                                <span class="desc"></span>
+                                <div class="controls">
+                                    <input formControlName="FirstNameForm" name="FirstName" [(ngModel)]="FirstName"
+                                        [ngClass]="{ 'is-invalid': submitted && f.FirstNameForm.errors }"
+                                        autocomplete="off" type="text" placeholder="Enter your first name"
+                                        class="form-control" (keypress)="OnlyCharacter($event)" maxlength="50">
+                                </div>
+                                <div *ngIf="submitted && f.FirstNameForm.errors" class="invalid-feedback">
+                                    <div class="requirecolor valiAlign" *ngIf="f.FirstNameForm.errors.required">
+                                        First name is required</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Last Name</label>
+                                <span class="desc"></span>
+                                <div class="controls">
+                                    <input formControlName="LastNameForm" name="Branch" [(ngModel)]="LastName"
+                                        [ngClass]="{ 'is-invalid': submitted && f.LastNameForm.errors }"
+                                        autocomplete="off" type="text" placeholder="Enter your branch"
+                                        class="form-control" (keypress)="OnlyCharacter($event)" maxlength="50">
+                                </div>
+                                <div *ngIf="submitted && f.LastNameForm.errors" class="invalid-feedback">
+                                    <div class="requirecolor valiAlign" *ngIf="f.LastNameForm.errors.required">Last name
+                                        is required</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Mobile Number</label>
+                                <span class="desc"></span>
+                                <div class="controls">
+                                    <input formControlName="MobileNumberForm" name="MobileNumber"
+                                        [(ngModel)]="MobileNumber"
+                                        [ngClass]="{ 'is-invalid': submitted && f.MobileNumberForm.errors }" type="text"
+                                        placeholder="Enter your phone number" class="form-control"
+                                        (keypress)="onlyDecimalNumberKey($event)" maxlength="10">
+                                </div>
+                                <div *ngIf="submitted && f.MobileNumberForm.errors" class="invalid-feedback">
+                                    <div class="requirecolor valiAlign" *ngIf="f.MobileNumberForm.errors.required">
+                                        Mobilenumber is required</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Age</label>
+                                <span class="desc"></span>
+                                <div class="controls">
+                                    <input formControlName="AgeForm" name="Age" [(ngModel)]="Age"
+                                        [ngClass]="{ 'is-invalid': submitted && f.AgeForm.errors }" type="text"
+                                        placeholder="Enter your age" class="form-control"
+                                        (keypress)="onlyDecimalNumberKey($event)" maxlength="2">
+                                </div>
+                                <div *ngIf="submitted && f.AgeForm.errors" class="invalid-feedback">
+                                    <div class="requirecolor valiAlign" *ngIf="f.AgeForm.errors.required">Age is
+                                        required</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Gender</label>
+                                <span class="desc"></span>
+                                <select formControlName="GenderForm" name="District" [(ngModel)]="GenderId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.GenderForm.errors }"
+                                    class="form-control ">
+                                    <option value="" disabled>Select Gender</option>
+                                    <option *ngFor='let data of GenderData' value={{data.GenderId}}>
+                                        {{data.GenderName}}</option>
+                                </select>
+
+                                <div *ngIf="submitted && f.GenderForm.errors" class="invalid-feedback">
+                                    <div class="requirecolor valiAlign" *ngIf="f.GenderForm.errors.required">
+                                        Gender is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">BloodGroup</label>
+                                <span class="desc"></span>
+                                <select formControlName="BloodGroupForm" name="BloodGroupId" [(ngModel)]="BloodGroupId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.BloodGroupForm.errors }"
+                                    class="form-control ">
+                                    <option value="" disabled>Select BlooodGroup</option>
+                                    <option *ngFor='let data of BloodGroupData' value={{data.BloodGroupId}}>
+                                        {{data.BloodGroup}}</option>
+                                </select>
+
+                                <div *ngIf="submitted && f.BloodGroupForm.errors" class="invalid-feedback">
+                                    <div class="requirecolor valiAlign" *ngIf="f.BloodGroupForm.errors.required">
+                                        BloodGroup is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Marital Status</label>
+                                <span class="desc"></span>
+                                <select formControlName="MaritalStatusForm" name="MaritalStatus"
+                                    [(ngModel)]="MaritalStatus"
+                                    [ngClass]="{ 'is-invalid': submitted && f.MaritalStatusForm.errors }"
+                                    class="form-control ">
+                                    <option value="" disabled>Select Gender</option>
+                                    <option value="0">Married</option>
+                                    <option value="1">Unmarried</option>
+
+                                </select>
+
+                                <div *ngIf="submitted && f.MaritalStatusForm.errors" class="invalid-feedback">
+                                    <div class="requirecolor valiAlign" *ngIf="f.MaritalStatusForm.errors.required">
+                                        MaritalStatus is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Address</label>
+                                <span class="desc"></span>
+                                <div class="controls">
+                                    <input formControlName="AddressForm" name="Address" [(ngModel)]="Address"
+                                        [ngClass]="{ 'is-invalid': submitted && f.AddressForm.errors }" type="text"
+                                        placeholder="Enter your address" class="form-control" maxlength="150"
+                                        pattern="^([A-Za-z]+ )+[A-Za-z]+$|^([A-Za-z]+-)+[A-Za-z]+$|^([A-Za-z]+.)+[A-Za-z]+$|^([A-Za-z]+')+[A-Za-z]+$|^([A-Za-z]+.)|^[A-Za-z]+$">
+                                </div>
+                                <div *ngIf="submitted && f.AddressForm.errors" class="invalid-feedback">
+                                    <div class="requirecolor valiAlign" *ngIf="f.AddressForm.errors.required">
+                                        Address is required</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Address2</label>
+                                <span class="desc"></span>
+                                <div class="controls">
+                                    <input formControlName="AlternativeaddressForm" name="Address2"
+                                        [(ngModel)]="AlternativeAddress" type="text" placeholder="Enter your address2"
+                                        class="form-control" maxlength="150"
+                                        pattern="^([A-Za-z]+ )+[A-Za-z]+$|^([A-Za-z]+-)+[A-Za-z]+$|^([A-Za-z]+.)+[A-Za-z]+$|^([A-Za-z]+')+[A-Za-z]+$|^([A-Za-z]+.)|^[A-Za-z]+$">
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">State</label>
+                                <span class="desc"></span>
+                                <select formControlName="StateForm" name="state" [(ngModel)]="StateId"
+                                    (change)="GetDistrict(StateId)" autocomplete="off"
+                                    [ngClass]="{ 'is-invalid': submitted && f.StateForm.errors }" class="form-control ">
+                                    <option disabled value="v">Select state</option>
+                                    <option *ngFor='let data of StateData' value={{data.StateId}}>
+                                        {{data.StateName}}</option>
+                                </select>
+                                <div *ngIf="submitted && f.StateForm.errors" class="invalid-feedback">
+                                    <div class="requirecolor valiAlign" *ngIf="f.StateForm.errors.required">State is
+                                        required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Distict</label>
+                                <span class="desc"></span>
+                                <select formControlName="DistrictForm" name="District" [(ngModel)]="DistrictId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.DistrictForm.errors }"
+                                    class="form-control ">
+                                    <option value="" disabled>Select the District</option>
+                                    <option *ngFor='let data of DistrictData' value={{data.DistrictId}}>
+                                        {{data.DistrictName}}</option>
+                                </select>
+
+                                <div *ngIf="submitted && f.DistrictForm.errors" class="invalid-feedback">
+                                    <div class="requirecolor valiAlign" *ngIf="f.DistrictForm.errors.required">
+                                        District is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">PinCode</label>
+                                <span class="desc"></span>
+                                <div class="controls">
+                                    <input formControlName="PincodeForm" name="pincode" [(ngModel)]="PinCode"
+                                        [ngClass]="{ 'is-invalid': submitted && f.PincodeForm.errors }" type="text"
+                                        placeholder="Enter your pincode" class="form-control"
+                                        (keypress)="onlyDecimalNumberKey($event)" maxlength="6">
+                                </div>
+                                <div *ngIf="submitted && f.PincodeForm.errors" class="invalid-feedback">
+                                    <div class="requirecolor valiAlign" *ngIf="f.PincodeForm.errors.required">Email
+                                        is required</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-9 col-md-12 padding-bottom-30">
+                            <div class="text-left float-right">
+                                <button type="submit" class="btn btn-primary">{{ButtonText}}</button>
+                                <button (click)="cancelPatient()" type="button" class="btn">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+
+    </div>
+
+
+
+
+
+
+    <!-- MAIN CONTENT AREA ENDS -->
+</section>

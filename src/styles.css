@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+.login_page{
+    background-color: #3F51B5;
+    background-image: url(../src/assets/images/login-bg.png);
+}
+.float-right{
+    float:right;
+}
+#superadmin{
+    display:none;
+}
+#hospitaladmin{
+    display:none;
+}
+#doctor{
+    display:none;
+}
+.invalid-feedback{
+    color:red;
+    
+}
+thead{
+    background: #3f51b5;
+}
+
+.myIcon >i{
+font-size: 20px;
+}
+.mat-header-cell{
+    text-align:left!important;
+    color: #fff!important;
+}

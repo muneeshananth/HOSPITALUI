@@ -1,0 +1,237 @@
+<section class="wrapper main-wrapper row">
+
+    <div class='col-xs-12'>
+        <div class="page-title">
+
+            <div class="pull-left">
+                <!-- PAGE HEADING TAG - START -->
+                <h1 class="title">Add a Doctor</h1><!-- PAGE HEADING TAG - END -->
+            </div>
+
+            <div class="pull-right hidden-xs">
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="index.html"><i class="fa fa-home"></i>Home</a>
+                    </li>
+                    <li>
+                        <a href="uni-staffs.html">Doctor</a>
+                    </li>
+                    <li class="active">
+                        <strong>Add Doctor</strong>
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!-- MAIN CONTENT AREA STARTS -->
+    <div class="col-xs-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">Basic Info</h2>
+
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <form [formGroup]="DoctorForm" (ngSubmit)="DoctorAdd()">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">First Name</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="FirstNameForm" name="FirstName" [(ngModel)]="FirstName"
+                                            [ngClass]="{ 'is-invalid': submitted && f.FirstNameForm.errors }"
+                                            autocomplete="off" type="text" placeholder="Enter your first name"
+                                            class="form-control"
+                                            pattern="^([A-Za-z]+ )+[A-Za-z]+$|^([A-Za-z]+-)+[A-Za-z]+$|^([A-Za-z]+.)+[A-Za-z]+$|^([A-Za-z]+')+[A-Za-z]+$|^([A-Za-z]+.)|^[A-Za-z]+$"
+                                            (keypress)="OnlyCharacter($event)" maxlength="75">
+                                    </div>
+                                    <div *ngIf="submitted && f.FirstNameForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.FirstNameForm.errors.required">
+                                            First name is required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Last Name</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="LastNameForm" name="Branch" [(ngModel)]="LastName"
+                                            [ngClass]="{ 'is-invalid': submitted && f.LastNameForm.errors }"
+                                            autocomplete="off" type="text" placeholder="Enter your branch"
+                                            class="form-control"
+                                            pattern="^([A-Za-z]+ )+[A-Za-z]+$|^([A-Za-z]+-)+[A-Za-z]+$|^([A-Za-z]+.)+[A-Za-z]+$|^([A-Za-z]+')+[A-Za-z]+$|^([A-Za-z]+.)|^[A-Za-z]+$"
+                                            (keypress)="OnlyCharacter($event)" maxlength="75">
+                                    </div>
+                                    <div *ngIf="submitted && f.LastNameForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.LastNameForm.errors.required">Last
+                                            name is required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="EmailForm" name="Address" [(ngModel)]="EmailID"
+                                            [ngClass]="{ 'is-invalid': submitted && f.EmailForm.errors }" type="text"
+                                            placeholder="Enter your email" class="form-control"
+                                            pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$">
+                                    </div>
+                                    <div *ngIf="submitted && f.EmailForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.EmailForm.errors.required">
+                                            Email is required</div>
+                                        <div *ngIf="f.EmailForm.errors.pattern">Email must be a valid email address
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Mobile Number</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="MobileNumberForm" name="MobileNumber"
+                                            [(ngModel)]="MobileNumber"
+                                            [ngClass]="{ 'is-invalid': submitted && f.MobileNumberForm.errors }"
+                                            type="text" placeholder="Enter your phone number" class="form-control"
+                                            (keypress)="onlyDecimalNumberKey($event)" maxlength="10">
+                                    </div>
+                                    <div *ngIf="submitted && f.MobileNumberForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.MobileNumberForm.errors.required">
+                                            Mobilenumber is required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Age</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="AgeForm" name="Age" [(ngModel)]="Age"
+                                            [ngClass]="{ 'is-invalid': submitted && f.AgeForm.errors }" type="text"
+                                            placeholder="Enter your age" class="form-control"
+                                            (keypress)="onlyDecimalNumberKey($event)" maxlength="2">
+                                    </div>
+                                    <div *ngIf="submitted && f.AgeForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.AgeForm.errors.required">Age is
+                                            required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Gender</label>
+                                    <span class="desc"></span>
+                                    <select formControlName="GenderForm" name="District" [(ngModel)]="GenderId"
+                                        [ngClass]="{ 'is-invalid': submitted && f.GenderForm.errors }"
+                                        class="form-control ">
+                                        <option value="" disabled>Select Gender</option>
+                                        <option *ngFor='let data of GenderData' value={{data.GenderId}}>
+                                            {{data.GenderName}}</option>
+                                    </select>
+
+                                    <div *ngIf="submitted && f.GenderForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.GenderForm.errors.required">
+                                            Gender is required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Qualification</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="QualificationForm" name="Qualification"
+                                            [(ngModel)]="Qualification"
+                                            [ngClass]="{ 'is-invalid': submitted && f.QualificationForm.errors }"
+                                            type="text" placeholder="Enter your Qualification" class="form-control"
+                                            (keypress)="OnlyCharacter($event)">
+                                    </div>
+                                    <div *ngIf="submitted && f.QualificationForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.QualificationForm.errors.required">
+                                            Qualification is required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label" >Position</label>
+                                    <span class="desc"></span>
+                                    <div class="controls" >
+
+ 
+                                           
+                                            <input type="range" [(ngModel)]="Position" formControlName="PositionForm" name="position" min="1" max="100" value="50" class="slider" id="myRange">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Profile Image</label>
+                                    <span class="desc"></span>
+                                    <div class="col-sm-4 col-xs-8">
+                                        <label class="control-label" aria-hidden="true">
+
+                                            <img [src]="sanitizer.bypassSecurityTrustUrl(imagePreview)"
+                                                class="rounded pointer"
+                                                style="height: 100px; width: 100px;width:100px;border-radius: 45px;">
+                                            <!-- <span>{{ImageFileName}}</span> -->
+                                            <input type="file" accept=".png, .jpg, .jpeg" [(ngModel)]="ProfileImage"
+                                                formControlName="ProfileImageForm" style="display:none;"
+                                                (change)="onFileChange($event)" />
+                                        </label>
+                                    </div>
+                                    <!-- <div class="controls">
+                                        <input type="file" formControlName="ProfileImageForm" name="ProfileImage"
+                                            [(ngModel)]="ProfileImage" class="form-control">
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-9 col-md-12 padding-bottom-30">
+                            <div class="text-left float-right">
+                                <button type="submit" class="btn btn-primary">{{ButtonText}}</button>
+                                <button routerLink="/doctorlist" type="button" class="btn">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+
+
+
+
+    <!-- MAIN CONTENT AREA ENDS -->
+</section>

@@ -1,0 +1,227 @@
+<section class="wrapper main-wrapper row">
+
+    <div class='col-xs-12'>
+        <div class="page-title">
+
+            <div class="pull-left">
+                <!-- PAGE HEADING TAG - START -->
+                <h1 class="title">Add Hospital</h1><!-- PAGE HEADING TAG - END -->
+            </div>
+
+            <div class="pull-right hidden-xs">
+                <ol class="breadcrumb">
+                    <li>
+                        <a><i class="fa fa-home"></i>Home</a>
+                    </li>
+                    <li>
+                        <a>Hospital</a>
+                    </li>
+                    <li class="active">
+                        <strong>Add Hospital</strong>
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!-- MAIN CONTENT AREA STARTS -->
+    <div class="col-xs-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">Basic Info</h2>
+               
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <form [formGroup]="hospitalForm" (ngSubmit)="hospitaladd()">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Hospital Name</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="hospitalnameForm" name="HospitalName"
+                                            [(ngModel)]="HospitalName"
+                                            [ngClass]="{ 'is-invalid': submitted && f.hospitalnameForm.errors }"
+                                            autocomplete="off" type="text" placeholder="Enter your hospital name"
+                                            class="form-control" (keypress)="OnlyCharacter($event)"
+                                            pattern="^([A-Za-z]+ )+[A-Za-z]+$|^([A-Za-z]+-)+[A-Za-z]+$|^([A-Za-z]+.)+[A-Za-z]+$|^([A-Za-z]+')+[A-Za-z]+$|^([A-Za-z]+.)|^[A-Za-z]+$">
+                                    </div>
+                                    <div *ngIf="submitted && f.hospitalnameForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.hospitalnameForm.errors.required">
+                                            Hospital name is required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Branch</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="branchForm" name="Branch" [(ngModel)]="Branch"
+                                            [ngClass]="{ 'is-invalid': submitted && f.branchForm.errors }"
+                                            autocomplete="off" type="text" placeholder="Enter your branch"
+                                            class="form-control" (keypress)="OnlyCharacter($event)"
+                                            pattern="^([A-Za-z]+ )+[A-Za-z]+$|^([A-Za-z]+-)+[A-Za-z]+$|^([A-Za-z]+.)+[A-Za-z]+$|^([A-Za-z]+')+[A-Za-z]+$|^([A-Za-z]+.)|^[A-Za-z]+$">
+                                    </div>
+                                    <div *ngIf="submitted && f.branchForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.branchForm.errors.required">Branch
+                                            is required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Address</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input maxlength="150"
+                                            pattern="^([A-Za-z]+ )+[A-Za-z]+$|^([A-Za-z]+-)+[A-Za-z]+$|^([A-Za-z]+.)+[A-Za-z]+$|^([A-Za-z]+')+[A-Za-z]+$|^([A-Za-z]+.)|^[A-Za-z]+$"
+                                            formControlName="addressForm" name="Address" [(ngModel)]="Address"
+                                            [ngClass]="{ 'is-invalid': submitted && f.addressForm.errors }" type="text"
+                                            placeholder="Enter your address" class="form-control" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="submitted && f.addressForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.addressForm.errors.required">
+                                            Address is required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Address2</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="alternativeaddressForm" name="Address2"
+                                            [(ngModel)]="AlternativeAddress" type="text"
+                                            placeholder="Enter your address2" maxlength="150"
+                                            pattern="^([A-Za-z]+ )+[A-Za-z]+$|^([A-Za-z]+-)+[A-Za-z]+$|^([A-Za-z]+.)+[A-Za-z]+$|^([A-Za-z]+')+[A-Za-z]+$|^([A-Za-z]+.)|^[A-Za-z]+$"
+                                            class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="emailForm" name="email" [(ngModel)]="EmailID"
+                                            [ngClass]="{ 'is-invalid': submitted && f.emailForm.errors }" type="text"
+                                            placeholder="Enter your email" class="form-control" maxlength="120"
+                                            pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$"
+                                            autocomplete="off">
+                                    </div>
+                                    <div *ngIf="submitted && f.emailForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.emailForm.errors.required">Email is
+                                            required</div>
+                                            <div *ngIf="f.emailForm.errors.pattern">Email must be a valid email address
+                                            </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="phonenumberForm" name="phonenumber"
+                                            [(ngModel)]="MobileNumber"
+                                            [ngClass]="{ 'is-invalid': submitted && f.phonenumberForm.errors }"
+                                            type="text" placeholder="Enter your phone number" class="form-control"
+                                            maxlength="10" (keypress)="onlyDecimalNumberKey($event)" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="submitted && f.phonenumberForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.phonenumberForm.errors.required">
+                                            Email is required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">PinCode</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input formControlName="pincodeForm" name="pincode" [(ngModel)]="PinCode"
+                                            [ngClass]="{ 'is-invalid': submitted && f.pincodeForm.errors }" type="text"
+                                            placeholder="Enter your pincode" class="form-control" maxlength="6"
+                                            (keypress)="onlyDecimalNumberKey($event)" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="submitted && f.pincodeForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.pincodeForm.errors.required">Email
+                                            is required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">State</label>
+                                    <span class="desc"></span>
+                                    <select formControlName="stateForm" name="state" [(ngModel)]="StateId"
+                                        (change)="GetDistrict(StateId)" autocomplete="off"
+                                        [ngClass]="{ 'is-invalid': submitted && f.stateForm.errors }"
+                                        class="form-control ">
+                                        <option disabled value="v">Select state</option>
+                                        <option *ngFor='let data of StateData' value={{data.StateId}}>
+                                            {{data.StateName}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.stateForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.stateForm.errors.required">State is
+                                            required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Distict</label>
+                                    <span class="desc"></span>
+                                    <select formControlName="districtForm" name="District" [(ngModel)]="DistrictId"
+                                        [ngClass]="{ 'is-invalid': submitted && f.districtForm.errors }"
+                                        class="form-control " autocomplete="off">
+                                        <option value="" disabled>Select the District</option>
+                                        <option *ngFor='let data of DistrictData' value={{data.DistrictId}}>
+                                            {{data.DistrictName}}</option>
+                                    </select>
+
+                                    <div *ngIf="submitted && f.districtForm.errors" class="invalid-feedback">
+                                        <div class="requirecolor valiAlign" *ngIf="f.districtForm.errors.required">
+                                            District is required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-xs-12 col-sm-9 col-md-12 padding-bottom-30">
+                            <div class="text-left float-right">
+                                <button type="submit" class="btn btn-primary">{{ButtonText}}</button>
+                                <button type="button" (click)="clearform()" class="btn">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+    <!-- MAIN CONTENT AREA ENDS -->
+</section>
